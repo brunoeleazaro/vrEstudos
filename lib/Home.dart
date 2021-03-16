@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            color: Colors.green,
+            color: Colors.lightBlue,
             height: 200,
             width: 200,
           )
