@@ -1,3 +1,5 @@
+import 'package:estudos/Dia1.dart';
+import 'package:estudos/Dia2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,59 +9,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  double padding = 10;
-  Color cabelo = Colors.brown;
+  List listaDesc = ['Estudo 1', 'Estudo 2'];
+  List listaClass = [Dia1(), Dia2()];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            color: cabelo,
-            height: 30,
-            width: 100,
-          ),
-          Container(
-            color: Colors.white,
-            height: 100,
-            width: 100,
-            child: Padding(
-              padding: EdgeInsets.only(top: 10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: padding),
-                    child: Container(
-                      color: Colors.black,
-                      height: 10,
-                      width: 10,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: padding),
-                    child: Container(
-                      color: Colors.black,
-                      height: 10,
-                      width: 10,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: Colors.green,
-            height: 200,
-            width: 200,
-          )
-        ],
+      child: ListView.builder(
+        itemCount: listaDesc.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return listaClass[index];
+              }));
+            },
+            title: Text(listaDesc[index]),
+            trailing: Icon(Icons.favorite_border),
+          );
+        },
       ),
     );
   }
